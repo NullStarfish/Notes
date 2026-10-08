@@ -1,4 +1,5 @@
-通常是有两种。row major和col major
+
+
 
 **row-major / column-major 描述的是矩阵元素在一维内存中的排列顺序**。
 
