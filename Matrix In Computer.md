@@ -1,3 +1,9 @@
+---
+up:
+  - "[[矩阵求导|matrix derivatives]]"
+---
+
+
 ```
 pto::Tile<
   pto::TileType Loc_,
@@ -27,6 +33,7 @@ a GlobalTensor is to describe the memory layout and memory access pattern of a t
 
 ## Basic:
 memory stuff:
+
 
 [[row major&col major]]
 [[matrix stride(mapping)]]
