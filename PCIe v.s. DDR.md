@@ -42,3 +42,26 @@ $$ \text{Concurrency} \approx \text{Throughput} \times \text{Latency} $$
 $$ 2\times10^6 \times 100\times10^{-6}=200 $$
 
 也就是说，需要大约 200 个同时未完成的 I/O 请求 来隐藏延迟。
+
+
+
+
+
+[[Memory Access]]
+
+$$ \boxed{NS=BL} $$
+
+维持 10 GB/s 所需的平均在途请求数
+假设 DRAM 以 64B cache line 请求访问，SSD 以 4KiB 请求访问。使用给定平均延迟估算。
+
+
+|System|Requests|
+|---|---|
+|DRAM · 80ns|13|
+|SSD · 20μs|49|
+|SSD · 100μs|244|
+
+10 GB/s \* 80ns = N \* 64B
+...
+
+

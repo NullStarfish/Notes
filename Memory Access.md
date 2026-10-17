@@ -9,6 +9,10 @@
 | $N$ | Concurrency，平均在途请求数 | requests |
 
 
+
+
+
+
 ## IOPS 与 Bandwidth 的关系
 
 $$ \boxed{B=I\times S} $$
@@ -20,7 +24,22 @@ $$ \boxed{B=I\times S} $$
 ## Little's Law：并发为什么能隐藏延迟
 
 
+
 $$ \boxed{N=I\times L} $$
+
+
+
+需要解释的是L和N:
+Latency：实验量，测试某个request多久能被解决，必然会有负载和硬件解决能力的影响。
+> 非空载Latency！
+
+N: Concurrency.但并非普通的并发。
+可以这样理解：在你发出reqeust的时刻，系统中前面存在的request的数量：
+因此，L的时间，解决了N个request，因此I = N / L
+
+>[!note]
+>可以认为控制器并发量是N的一个子集
+
 
 
 # Bandwidth-Delay Product
@@ -40,3 +59,6 @@ $$ \boxed{NS=BL} $$
 右边的 \(BL\) 就是 Bandwidth-Delay Product（BDP，带宽时延积）。
 
 它告诉我们，为了在给定延迟下维持某个目标带宽，需要有多少数据保持在途。
+
+
+
