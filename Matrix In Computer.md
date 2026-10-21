@@ -1,6 +1,5 @@
 ---
 up:
-  - "[[矩阵求导|matrix derivatives]]"
 ---
 
 

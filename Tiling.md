@@ -101,6 +101,38 @@ $$ \boxed{ 2B_MB_K+2B_KB_N+4B_MB_N\leq65536 } $$
     
 - 扩大 $B_K$，会增加 A/B Working Set，却不直接增加当前模型中的 Arithmetic Intensity。
 
+（这里working set指的是tile数据占据的内存空间）
+减小BK，能让上面这个不等式约束更容易满足
+
 
 
 这听起来似乎说明应该让 $$B_K$$ 尽可能小。但实际 NPU 还需要考虑矩阵指令的最小 K 粒度、每次 Load/Compute 的启动开销、K 循环迭代次数及硬件效率。
+
+
+1）K 循环开销
+
+整个 GEMM 需要：
+
+$$ L=\left\lceil\frac{K}{B_K}\right\rceil $$
+
+次 K 迭代。
+
+\(B_K\) 越小，迭代次数越多，可能增加 DMA 启动、指令发射、同步与地址生成的开销。
+
+（2）Matrix Engine 的硬件粒度
+
+假如矩阵单元一次要求消费 K 维度上至少 32 个元素，那么 \(B_K=8\) 可能需要 Padding 或无法有效利用硬件。
+
+（3）Pipeline 效率
+
+较小的 \(B_K\) 让每个 K Tile 的计算任务更短，可能难以摊薄每次数据搬运和调度的固定开销；较大的 \(B_K\)又可能增加 Buffer 占用并降低灵活性。
+
+（4）独立的 Accumulator 存储资源
+
+实际架构可能满足：
+
+$$ s_A B_MB_K+s_B B_KB_N\leq S_{\mathrm{SRAM}} $$
+
+$$ s_C B_MB_N\leq S_{\mathrm{ACC}} $$
+
+这和将 A/B/C 放在同一个容量约束中的优化问题不同。
