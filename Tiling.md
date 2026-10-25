@@ -1,4 +1,23 @@
 
+>[!question]
+>Tiling是什么？为什么会有Tiling的分析？
+
+我们在设计npu的时候，肯定会设计一些local的sram来加速访存，存放一些local中间变量：
+
+很明显，无限容量的local sram能够直接消灭globalmemory
+但是我们并没有，因此我们必须回答：
+__*如何在有限资源下，达到最高的计算效率，减少访存次数*__
+
+>[!note]
+>Tiling中没有对计算主体的建模，不含matrix engine或者compute core
+>我们仅仅分析Arithmetic Intensity: 负责关注BM, BN, BK，关注的是理想情况：
+>single core，single load-store unit时候的访存-计算比分析
+
+
+
+
+
+
 运算的proof:
 [[Tiling Proof]]
 
