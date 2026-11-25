@@ -8,6 +8,9 @@ $X, Y$: space of the input/output values
 to learn a function $h: X \to Y$ 
 $h$: hypothesis(假设)
 
+
+$x^{(i)}$ 是第 $i$ 个样本，$x_j^{(i)}$ 是它的第 $j$ 个特征
+
 Loss function: [[Loss Function]]
 
 根据y的值域类型，我们分为：
